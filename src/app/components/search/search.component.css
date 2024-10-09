@@ -1,0 +1,45 @@
+.search{
+   border: 1px solid rgb(164, 169, 173);
+   background-color: rgb(255, 255, 255);
+   height: 26px;
+   padding: 0 10px 0 25px;
+   border-radius: 5px;
+   font-size: .9rem;
+   outline: none;
+   width: 160px;
+   font-family: "Poppins", sans-serif;
+   font-weight: 400;
+   font-style: normal;
+   
+}
+
+.search:focus{
+   border: 1px solid rgb(0, 85, 197);
+   box-shadow: 0px 0px 0px 4px rgba(108, 135, 255, 0.226);
+
+}
+
+.search:hover{
+   border: 1px solid rgb(0, 85, 197);
+
+}
+.search:focus ~ .icon {
+   color: rgb(0, 85, 197); /* Warna ikon berubah ketika search input difokuskan */
+
+}
+
+.search_con {
+   display: flex;
+   position: relative;
+
+}
+
+.icon{
+   position: absolute;
+   color: rgb(112, 118, 138);
+   font-size: 1.2rem;
+   top: .2rem;
+   left: .2rem;
+   pointer-events: none; 
+}
+

@@ -1,0 +1,21 @@
+
+<div class="con">
+<button class="prev" (click)="prevPage()" [disabled]="currentPage === 1">
+   <span class="material-symbols-rounded">
+      keyboard_arrow_left
+      </span>
+</button>
+
+<button class="page" *ngFor="let a of pages" 
+        [ngClass]="{'active': currentPage === a}" 
+        (click)="setPage(a)">
+  {{a}}
+</button>
+
+<button class="next" (click)="nextPage()" [disabled]="currentPage === totalPages"  >
+   <span class="material-symbols-rounded">
+      keyboard_arrow_right
+      </span>
+</button>
+
+</div>

@@ -1,0 +1,140 @@
+<nav>
+   <div class="nav_con">
+      <div style="font-weight: 600;">MOONAPP</div>
+      <div>
+         <ul class="nav_menu">
+            <li [routerLink]="['/customer-list']">customer</li>
+            <li class="active" [routerLink]="['/items']">items</li>
+            <li [routerLink]="['/orders']">order</li>
+         </ul>
+      </div>
+   </div>
+</nav>
+
+
+<app-confirm 
+message="Yakin ingin menghapus item ini?"
+   data="customer.customerName" 
+   [showModal]="showModal" 
+   [customerToDelete]="customerToDelete" 
+   (close)="closeModal()"
+   (confirm)="confirmDelete($event)">
+</app-confirm>
+
+
+
+<div class="con">
+   <h2 class="hero_title">DAFTAR ITEMS</h2>
+
+   <div style="display: flex; justify-content: space-between; gap: 5px;">
+      <div style="display: flex; gap: 5px;">
+         <app-search
+            [(searchQuery)]="searchQuery"
+            (searchQueryChange)="onSearchChange2()">
+         </app-search>
+
+         <app-select
+            label="Sort"
+            [options]="sortList"
+            (selectedOption)="onOptionSelected($event)">
+         </app-select>
+
+         <app-select
+            label="Filter"
+            [options]="filterIsActiveList"
+            (selectedOption)="onFilterIsActiveSelected($event)">
+         </app-select>
+      </div>
+
+      <app-button
+         text="Add"
+         icon="add"
+         [routerLink]="['/add-item']">
+      </app-button>
+   </div>
+
+   <br>
+
+   <div class="item-con">
+      <div class="item" *ngFor="let item of items">
+
+         <div>
+            <div class="pic">
+               <img 
+                  [src]="item.picUrl ? item.picUrl : 'detault.jpg'"
+                  alt="{{ item.itemName }}">
+            </div>
+         </div>
+         
+
+         <div class="text">
+            <div style="width: 100%;">
+               <div class="code">{{ item.itemCode }}</div>
+
+               <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;  padding-right: 20px;">
+                  
+                  
+                  <div style="display: flex; align-items: center; width: 50%;">
+                     <span class="name">{{ item.itemName }}</span>
+                     <span 
+                        class="status"
+                        [ngClass]="item.isActive ? 'active-status' : 'inactive-status'">
+                        <span class="material-symbols-rounded">
+                           {{ item.isActive ? 'verified' : 'cancel' }}
+                        </span>
+                     </span>
+                  </div>
+   
+                  <div style="display: flex; gap: 20px; justify-content: space-between;  width: 50%;">
+
+                   
+                     <span [hidden]="!item.isActive" class="name" ><span style="font-size: .7rem; font-weight: 400; vertical-align: top;">Stk.</span>{{ item.stock }}</span>
+                     <span [hidden]="!item.isActive" class="name" ><span style="font-size: .7rem; font-weight: 400; vertical-align: top;">Rp.</span> {{ item.price }}</span>
+
+                  </div>
+                  
+               </div>
+
+               
+            </div>
+
+            <div class="detail">
+               <app-icon-button
+                  icon="delete_forever"
+                  color="red"
+                  [hidden]="!item.isActive"
+                  (click)="openModal(item.itemCode)">
+               </app-icon-button>
+
+               <app-icon-button
+                  icon="edit"
+                  [hidden]="!item.isActive"
+                  [routerLink]="['/edit-item', item.itemCode]">
+               </app-icon-button>
+
+               <app-icon-button
+                  icon="visibility"
+
+                  
+                  [routerLink]="['/item-details', item.itemCode]"
+                  [hidden]="!item.isActive">
+               </app-icon-button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div style="display: flex; justify-content: space-between; gap: 7px; margin-top: 20px;">
+      <app-select
+         label=""
+         [options]="sizeList"
+         (selectedOption)="changeSize($event)">
+      </app-select>
+      
+      <app-pagination
+         [totalPages]="totalPages"
+         [currentPage]="page"
+         (pageChange)="onPageChange($event)">
+      </app-pagination>
+   </div>
+</div>

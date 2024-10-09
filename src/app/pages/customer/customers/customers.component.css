@@ -1,0 +1,217 @@
+.active-status {
+   color: green; /* Warna untuk status aktif */
+}
+
+.inactive-status {
+   color: red; /* Warna untuk status tidak aktif */
+}
+
+.material-symbols-rounded {
+   font-size: 1.2rem;
+}
+
+
+
+
+/* BASE */
+.con {
+   /* border: 1px solid red; */
+   margin: 0 auto;
+   width: 40%;
+   padding: 50px 0;
+}
+.hero_title{
+   margin: 40px 0;
+}
+
+
+
+
+
+
+.item {
+   /* border: 1px solid red; */
+   background-color: #fff;
+   margin-bottom: 5px;
+   border-radius: 9px;
+   font-size: .8rem;
+
+   display: flex;
+   padding: 5px;
+   gap: 20px;
+}
+
+.item:hover{
+   background-color: #f7f7f7;
+}
+
+.pic {
+   border-radius: 5px;
+   overflow: hidden;
+   width: 50px;
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-size: cover;
+}
+
+.pic img {
+   width: 100%;   /* Gambar mengisi lebar penuh dari .pic */
+   height: 100%;  /* Gambar mengisi tinggi penuh dari .pic */
+   object-fit: cover; /* Memastikan gambar memenuhi ruang tanpa mengubah rasio aspek */
+}
+
+.text{
+   /* border: 1px solid red; */
+   width: 100%;
+   display: flex;
+
+   justify-content: space-between;
+}
+
+.name{
+   font-size: 1.2rem;
+   font-weight: 500;
+   margin-bottom: 5px;
+}
+
+.detail {
+   font-size: .9rem;
+   display: flex;
+   gap: 5px;
+}
+
+.code {
+   font-size: .7rem;
+   color: #747474;
+   
+}
+.status {
+   border-radius: 10px;
+   padding: 0 5px;
+   font-size: .6rem;
+}
+
+
+
+
+
+.control {
+   display: flex;
+   justify-content: space-between;
+}
+
+
+
+
+/* NAV */
+
+
+
+nav {
+   background-color: #fff;
+   height: 30px;
+   width: 100%;
+   border-radius: 5px;
+   position: fixed;
+   top: 0;
+   z-index: 1;
+}
+
+.nav_con {
+   width: 40%;
+   margin: 0 auto;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.nav_menu {
+   list-style: none; /* Menghilangkan bullet pada ul */
+   display: flex; /* Menampilkan menu secara horizontal */
+   padding: 0; /* Menghilangkan padding default ul */
+   margin: 0; /* Menghilangkan margin default ul */
+}
+
+.nav_menu li {
+   margin-left: 20px; /* Memberikan jarak antar item menu */
+   cursor: pointer; /* Menambahkan pointer ketika dihover */
+   font-size: .9rem;
+}
+
+.nav_menu li.active {
+   color: red;
+   height: 100%;
+}
+
+.nav_menu li:hover {
+   color: #034fa1; /* Warna berubah ketika dihover */
+}
+
+
+
+/* ------------------------- */
+
+
+
+
+/* customers.component.css */
+.modal {
+   display: none; /* Hidden secara default */
+   position: fixed; /* Tetap di layar */
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5); /* Efek transparan */
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+ }
+ 
+ .modal.show {
+   display: flex; /* Tampilkan modal */
+ }
+ 
+ .modal-content {
+   background-color: white;
+   padding: 5px;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   width: 200px;
+   text-align: center;
+
+   font-size: .9rem;
+ }
+ 
+ .modal-footer {
+   display: flex;
+   justify-content: space-between;
+   gap: 10px;
+ }
+ 
+ .btn-confirm {
+   background-color: red;
+   color: white;
+   border: none;
+   padding: 10px;
+   cursor: pointer;
+ }
+ 
+ .btn-cancel {
+   background-color: gray;
+   color: white;
+   border: none;
+   padding: 10px;
+   cursor: pointer;
+ }
+ 
+ .close {
+   position: absolute;
+   right: 10px;
+   top: 10px;
+   cursor: pointer;
+   font-size: 18px;
+ }
+ 

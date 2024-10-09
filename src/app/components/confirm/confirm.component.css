@@ -1,0 +1,41 @@
+.modal {
+   display: none; /* Hidden secara default */
+   position: fixed; /* Tetap di layar */
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5); /* Efek transparan */
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+ }
+ 
+ .modal.show {
+   display: flex; /* Tampilkan modal */
+ }
+ 
+ .modal-content {
+   background-color: white;
+   padding: 5px;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   width: 200px;
+   text-align: center;
+   font-size: .9rem;
+ }
+ 
+ .modal-footer {
+   display: flex;
+   justify-content: space-between;
+   gap: 10px;
+ }
+ 
+ .close {
+   position: absolute;
+   right: 10px;
+   top: 10px;
+   cursor: pointer;
+   font-size: 18px;
+ }
+ 

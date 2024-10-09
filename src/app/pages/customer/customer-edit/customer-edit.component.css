@@ -1,0 +1,259 @@
+.error-message {
+   color: red; /* Warna teks merah untuk menonjolkan pesan error */
+   margin-top: 10px; /* Spasi di atas pesan error */
+   
+ }
+
+ .error-border {
+   border: 1px solid red; /* Menambahkan border merah */
+}
+
+.err{
+   font-size: .7rem !important;
+}
+
+
+
+
+
+
+/* NAV */
+nav {
+   background-color: #fff;
+   height: 30px;
+   width: 100%;
+   border-radius: 5px;
+   position: fixed;
+   top: 0;
+   z-index: 1;
+}
+
+.nav_con {
+   width: 40%;
+   margin: 0 auto;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.nav_menu {
+   list-style: none; /* Menghilangkan bullet pada ul */
+   display: flex; /* Menampilkan menu secara horizontal */
+   padding: 0; /* Menghilangkan padding default ul */
+   margin: 0; /* Menghilangkan margin default ul */
+}
+
+.nav_menu li {
+   margin-left: 20px; /* Memberikan jarak antar item menu */
+   cursor: pointer; /* Menambahkan pointer ketika dihover */
+   font-size: .9rem;
+}
+
+.nav_menu li.active {
+   color: red;
+   height: 100%;
+}
+
+.nav_menu li:hover {
+   color: #034fa1; /* Warna berubah ketika dihover */
+}
+
+
+
+/* BASE */
+.con {
+   /* border: 1px solid red; */
+   margin: 0 auto;
+   width: 25%;
+   padding: 50px 0;
+}
+.hero_title{
+   margin: 40px 0;
+}
+
+
+.paper {
+   display: flex;
+   gap: 30px;
+   background-color: white;
+   padding: 6px;
+   border-radius: 10px;
+   position: relative;
+}
+
+
+
+
+.input{
+   border: 1px solid rgb(164, 169, 173);
+   background-color: rgb(255, 255, 255);
+   height: 25px;
+   padding: 0 10px 0 10px;
+   border-radius: 5px;
+   font-size: .9rem;
+   outline: none;
+   width: 160px;
+   font-family: "Poppins", sans-serif;
+   font-weight: 400;
+   font-style: normal;
+   
+}
+
+.input:focus{
+   border: 1px solid rgb(0, 85, 197);
+   box-shadow: 0px 0px 0px 4px rgba(108, 135, 255, 0.226);
+
+}
+
+.input:hover{
+   border: 1px solid rgb(0, 85, 197);
+
+}
+
+/* label{
+   width: 500px;
+   font-size: .8rem;
+   margin-right: 10px;
+   border: 1px solid red;
+   display: inline;
+} */
+
+label {
+   /* width: 500px; */
+   font-size: .8rem;
+   margin-right: 10px;
+   /* border: 1px solid red; */
+   display: inline-block;
+   
+}
+
+.in{
+   /* border: 1px solid red; */
+   width: 100%;
+   margin-bottom: 10px;
+}
+
+
+
+.pic_add {
+   border-radius: 7px;
+   overflow: hidden;
+   width: 100px;
+   height: 100px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-size: cover;
+   /* border: 1px solid red; */
+}
+
+.pic_add img {
+   width: 100%;   
+   height: 100%;  
+   object-fit: cover;
+}
+
+
+
+
+.btn_upload{
+   /* border: 1px solid rgb(164, 169, 173);
+   border */
+   border: none;
+   background-color: rgb(33, 85, 255);
+   color: #fff;
+   font-weight: 400;
+
+   padding: 3px 0;
+   padding-left: 25px;
+   padding-right: 8px;
+   border-radius: 5px;
+   font-size: .9rem;
+   outline: none;
+   transition: .2s;
+   width: fit-content;
+   cursor: pointer;
+   /* padding-left: 30px; */
+   font-family: "Poppins", sans-serif;
+   font-weight: 400;
+   font-style: normal;
+}
+
+.btn_upload:focus{
+   /* border: 1px solid rgb(0, 85, 197); */
+   border: none;
+   box-shadow: 0px 0px 0px 4px rgba(108, 135, 255, 0.226);
+   transition: .2s;
+}
+
+.btn_upload:hover{
+   /* border: 1px solid rgb(0, 85, 197);
+    */
+    border: none;
+   transition: .2s;
+   background-color: rgb(15, 57, 196);
+   
+}
+
+.icon{
+   position: absolute;
+   color: rgb(253, 253, 253);
+   font-size: 1.2rem;
+   top: .2px;
+   left: .2rem;
+   pointer-events: none; 
+   
+}
+
+.btn_upload_con{
+   position: relative;
+   
+}
+
+
+
+
+.submit_btn{
+   /* border: 1px solid rgb(164, 169, 173);
+   border */
+   border: none;
+   background-color: rgb(33, 85, 255);
+   color: #fff;
+   font-weight: 400;
+   height: 26px;
+   /* padding: 0 10px; */
+   border-radius: 5px;
+   font-size: .9rem;
+   outline: none;
+   transition: .2s;
+   width: fit-content;
+   cursor: pointer;
+   /* padding-left: 30px; */
+   font-family: "Poppins", sans-serif;
+   font-weight: 400;
+   font-style: normal;
+
+   position: absolute;
+   right: 6px;
+   bottom: 6px;
+}
+
+.submit_btn:disabled{
+   opacity: .5;
+}
+
+.submit_btn:focus{
+   /* border: 1px solid rgb(0, 85, 197); */
+   border: none;
+   box-shadow: 0px 0px 0px 4px rgba(108, 135, 255, 0.226);
+   transition: .2s;
+}
+
+.submit_btn:hover{
+   /* border: 1px solid rgb(0, 85, 197);
+    */
+    border: none;
+   transition: .2s;
+   background-color: rgb(15, 57, 196);
+   
+}

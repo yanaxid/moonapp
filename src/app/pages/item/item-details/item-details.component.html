@@ -1,0 +1,96 @@
+<nav>
+   <div class="nav_con">
+      <div style="font-weight: 600;">MOONAPP</div>
+      <div>
+         <ul class="nav_menu">
+            <li class="active" [routerLink]="['/customer-list']">customer</li>
+            <li [routerLink]="['/items']">items</li>
+            <li [routerLink]="['/orders']">order</li>
+         </ul>
+      </div>
+   </div>
+</nav>
+
+
+<app-confirm 
+message="Yakin ingin menghapus item ini?"
+   data="customer.customerName" 
+   [showModal]="showModal" 
+   [customerToDelete]="customerToDelete" 
+   (close)="closeModal()"
+   (confirm)="confirmDelete($event)">
+</app-confirm>
+
+
+
+
+
+<div class="con">
+
+
+
+   <h2 class="hero_title">ITEM DETAIL</h2>
+
+
+
+   <div class="paper">
+
+
+
+
+      <div class="pic" style="width: 20%;">
+         <img [src]="item?.picUrl ? item?.picUrl : 'detault.jpg'" alt="{{ item.pic }}" />
+      </div>
+
+
+
+
+      <div style="position: relative; width: 80%;">
+
+         <div style="display: flex; align-items: center;">
+            <span class="name">{{ item.itemName }}
+            </span>
+
+            <span class="status" [ngClass]="item.isActive ? 'active-status' : 'inactive-status'">
+               <span class="material-symbols-rounded">
+                  {{ item.isActive ? 'verified' : 'cancel' }}
+               </span>
+
+            </span>
+
+         </div>
+
+
+
+
+
+         <br>
+
+         <div>
+            <p><strong>Code:</strong> {{ item?.itemCode }}</p>
+            <p><strong>Price:</strong> {{ item?.price }}</p>
+            <p><strong>Stock:</strong> {{ item?.stock }}</p>
+            <p><strong>Last Restock:</strong> {{ item?.lastReStock ? (item.lastReStock | date) : '-' }}
+            </p>
+            <!-- <li><strong>Created Date:</strong> {{ customer?.createdDate }}</li>
+            <li><strong>Modified Date:</strong> {{ customer?.modifiedDate }}</li> -->
+
+         </div>
+
+
+         <div class="detail">
+            <app-icon-button icon="delete_forever" color="red" [hidden]="!item.isActive"
+               (click)="openModal(item.itemCode)"></app-icon-button>
+
+
+            <app-icon-button icon="edit" [hidden]="!item.isActive"
+               [routerLink]="['/edit-item', item.itemCode]"></app-icon-button>
+
+         </div>
+
+
+
+      </div>
+   </div>
+
+</div>

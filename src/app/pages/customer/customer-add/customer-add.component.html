@@ -1,0 +1,167 @@
+<nav>
+   <div class="nav_con">
+      <div style="font-weight: 600;">MOONAPP</div>
+      <div>
+         <ul class="nav_menu">
+            <li class="active" [routerLink]="['/customer-list']">customer</li>
+            <li  [routerLink]="['/items']">items</li>
+            <li   [routerLink]="['/orders']">order</li>
+         </ul>
+      </div>
+   </div>
+</nav>
+
+
+
+<div class="con">
+
+
+   <h2 class="hero_title">TAMBAH CUSTOMER</h2>
+
+
+
+   <div class="paper">
+
+      <form (ngSubmit)="onSubmit(customerForm)" #customerForm="ngForm">
+
+         <div style="display: flex; flex-direction: column; gap: 20px;">
+
+
+
+            <div>
+
+               <!-- PIC -->
+
+
+
+
+               <div class="in" style="display: flex; flex-direction: column; gap: 10px;">
+
+                  <div class="pic_add" *ngIf="imageUrl">
+                     <img [src]="imageUrl" alt="Uploaded Image" />
+                  </div>
+
+
+                  <div>
+
+
+
+                     <input type="file" id="pic" name="pic" (change)="onFileSelected($event)" required
+                        style="display: none;" />
+
+
+                     <label for="pic" class="btn_upload_con">
+                        <span class="btn_upload">Upload</span>
+
+                        <span class="material-symbols-rounded icon">
+                           add_photo_alternate
+                        </span>
+                     </label>
+
+                  </div>
+
+
+               </div>
+
+
+
+               <!-- Menampilkan pesan error -->
+               <div class="err" *ngIf="errorMessage" class="error-message">
+                  {{ errorMessage }}
+               </div>
+
+
+            </div>
+
+            <div>
+               <!-- CUSTOMER NAME -->
+               <div class="in">
+
+
+                  <label for="customerName">Nama :</label>
+                  <input class="input" type="text" id="customerName" name="customerName"
+                     [(ngModel)]="customer.customerName" #name="ngModel" required minlength="2"
+                     pattern="^[a-zA-Z0-9][a-zA-Z0-9\s]*$"
+                     [ngClass]="{'error-border': (name.invalid && (name.touched)) || (customer.customerName.length > 10 && name.touched)}" />
+
+
+                  <div class="err" *ngIf="name.errors?.['minlength'] && name.touched" style="color: red;">
+                     Nama minimal harus terdiri dari 2 huruf.
+                  </div>
+                  <div class="err" *ngIf="customer.customerName.length > 10 && name.touched" style="color: red;">
+                     Nama tidak boleh lebih dari 10 huruf.
+                  </div>
+                  <div class="err" *ngIf="name.errors?.['pattern'] && name.touched" style="color: red;">
+                     Nama tidak boleh diawali dengan karakter khusus atau spasi.
+                  </div>
+                  <div class="err" *ngIf="name.errors?.['required'] && name.touched" style="color: red;">
+                     Nama harus diisi.
+                  </div>
+
+
+               </div>
+
+
+
+
+
+
+               <!-- CUSTOMER ADDRESS -->
+
+               <div class="in">
+                  <label for="customerAddress">Alamat :</label>
+                  <input class="input" type="text" id="customerAddress" name="customerAddress"
+                     [(ngModel)]="customer.customerAddress" #address="ngModel" pattern="^[a-zA-Z0-9][a-zA-Z0-9\s]*$" />
+
+
+                  <div class="err" *ngIf="customer.customerAddress.length > 10 && address.touched" style="color: red;">
+                     Alamat tidak boleh lebih dari 10 karakter.
+                  </div>
+                  <div class="err" *ngIf="address.errors?.['pattern'] && address.touched" style="color: red;">
+                     Alamat tidak boleh diawali dengan karakter khusus atau spasi.
+                  </div>
+               </div>
+
+               <!-- CUSTOMER PHONE -->
+
+               <div class="in">
+
+
+                  <label for="customerPhone">Telepon :</label>
+                  <input class="input" type="text" id="customerPhone" name="customerPhone"
+                     [(ngModel)]="customer.customerPhone" #phone="ngModel" required minlength="10" pattern="^[0-9]+$" />
+
+
+
+                  <!-- Validasi Telepon -->
+                  <div class="err" *ngIf="phone.errors?.['required'] && phone.touched" style="color: red;">
+                     Telepon harus diisi.
+                  </div>
+                  <div class="err" *ngIf="phone.errors?.['minlength'] && phone.touched" style="color: red;">
+                     Telepon minimal harus terdiri dari 10 digit.
+                  </div>
+                  <div class="err" *ngIf="customer.customerPhone.length > 15 && phone.touched" style="color: red;">
+                     Telepon tidak boleh lebih dari 15 digit.
+                  </div>
+                  <div class="err" *ngIf="phone.errors?.['pattern'] && phone.touched" style="color: red;">
+                     Telepon hanya boleh terdiri dari angka dan tidak boleh diawali dengan spasi atau karakter khusus.
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+
+
+
+         <!-- Menampilkan gambar setelah diunggah -->
+
+
+
+         <button class="submit_btn" type="submit" [disabled]="customerForm.invalid">Save</button>
+
+
+      </form>
+   </div>
+
+</div>

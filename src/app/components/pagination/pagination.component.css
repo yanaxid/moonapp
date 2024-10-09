@@ -1,0 +1,53 @@
+
+ 
+
+ .prev , .next{
+   border: none;
+   background-color: rgb(33, 85, 255);
+   color: #fff;
+   height: 26px;
+   width: 26px;
+   border-radius: 7px;
+   padding: 0px;
+   cursor: pointer;
+
+ }
+
+ .prev:disabled , .next:disabled{
+   border: none;
+   background-color: rgb(33, 85, 255);
+   color: #fff;
+   height: 26px;
+   width: 26px;
+   border-radius: 7px;
+   padding: 0px;
+   cursor: pointer;
+   opacity: .3;
+
+ }
+
+ .page{
+   border: none;
+   background-color: rgb(255, 255, 255);
+   color: #333;
+   height: 26px;
+   width: 26px;
+   border-radius: 7px;
+   padding: 0px;
+   cursor: pointer;
+   font-family: "Poppins", sans-serif;
+   font-weight: 400;
+   font-style: normal;
+
+ }
+
+ .con{
+   display: flex;
+   gap: 2px;
+ }
+
+ button.active {
+   background-color:rgb(33, 85, 255);
+   color: #fff;
+   cursor: pointer;
+ }

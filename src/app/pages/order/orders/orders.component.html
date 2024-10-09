@@ -1,0 +1,223 @@
+<nav>
+   <div class="nav_con">
+      <div style="font-weight: 600;">MOONAPP</div>
+      <div>
+         <ul class="nav_menu">
+            <li [routerLink]="['/customer-list']">customer</li>
+            <li [routerLink]="['/items']">items</li>
+            <li class="active" [routerLink]="['/orders']">order</li>
+         </ul>
+      </div>
+   </div>
+</nav>
+
+
+
+
+<app-confirm message="Yakin ingin menghapus?" data="customer.customerName" [showModal]="showModal"
+   [customerToDelete]="customerToDelete" (close)="closeModal()" (confirm)="confirmDelete($event)">
+</app-confirm>
+
+
+<div class="con">
+
+
+
+
+
+
+   <h2 class="hero_title">DAFTAR ORDERS</h2>
+
+
+   <div style="display: flex;justify-content: space-between; gap: 5px;">
+
+
+
+      <div style="display: flex; gap: 5px;">
+         <app-search [(searchQuery)]="searchQuery" (searchQueryChange)="onSearchChange2()" />
+
+         <app-select label="urutkan" [options]="sortList" (selectedOption)="onOptionSelected($event)" />
+         <!-- <app-select label="filter status" [options]="filterIsActiveList"
+            (selectedOption)="onFilterIsActiveSelected($event)" /> -->
+
+      </div>
+
+
+      <app-button icon="adf_scanner" text="Report" (click)="getReport()"></app-button>
+
+
+
+
+
+      <!-- <button [routerLink]="['/add-customer']">tambah</button> -->
+      <app-button text="Add" icon="local_mall" [routerLink]="['/add-orders']"></app-button>
+
+   </div>
+
+   <br>
+
+
+
+   <div class="item-con">
+
+      <div class="item" *ngFor="let o of orders">
+
+
+
+         <div class="text">
+
+
+
+
+
+            <div>
+
+               <div style="padding: 5px 10px 10px 10px;">
+                  <div class="code">{{ o.orderCode }}</div>
+               </div>
+
+
+
+
+               <div class="customer_detail"
+                  style=" padding: 10px; display: flex; justify-content: space-between; align-items: end;">
+
+
+
+                  <div style="display: flex; gap: 10px;">
+
+                     <div class="pic">
+                        <img [src]="o.customer.picUrl ? o.customer.picUrl : 'detault.jpg'" alt="{{ o.customerName }}" />
+                     </div>
+
+
+                     <div>
+                        <span>
+                           <span class="name">{{ o.customer.customerName }}</span>
+                           <span class="status" [ngClass]="o.isOrderActive ? 'active-status' : 'inactive-status'">
+                              <span class="material-symbols-rounded">
+                                 {{ o.isOrderActive ? 'verified' : 'cancel' }}
+                              </span>
+
+                           </span>
+
+                        </span>
+
+                        <p>{{o.customer.customerCode}}</p>
+                     </div>
+
+
+                  </div>
+
+                  <div style="font-size: .9rem;">
+
+                     {{o.orderDate | slice:0:10}}
+                  </div>
+
+               </div>
+
+               <div style="  border-radius: 8px;">
+
+
+
+                  <div style=" padding: 0px 10px 10px 10px;">
+                     <div *ngIf="o.isOrderActive" style="width: 100%; margin-top: 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.253);"></div>
+
+
+                     <!-- <h4 style="margin-top: 5px; margin-left: 5px; font-weight: 500;">Order Item</h4> -->
+
+                     <div *ngFor="let i of o.items" class="item_detail">
+
+                        <div style="width: 50%; display: flex; gap: 10px;">
+
+
+                           <div>
+                              <div class="pic">
+                                 <img [src]="i.picUrl ? i.picUrl : 'detault.jpg'" alt="{{ i.pic }}" />
+                              </div>
+                           </div>
+
+
+                           <div>
+                              <div style="font-size: .7rem;">{{i.itemCode}}</div>
+                              <h3 style="font-weight: 600;">{{i.itemName}}</h3>
+                           </div>
+
+                        </div>
+
+
+                        <div style="display: flex; justify-content: flex-end; width: 50%;">
+                           <div> {{i.quantity}} * {{i.price}} = <span style="font-size: .9rem; font-weight: 600;">
+
+
+                                 <span style="font-size: .7rem; font-weight: 400; vertical-align: top;">Rp.</span>
+                                 {{i.totalItemPrice}}</span></div>
+                        </div>
+
+
+
+                     </div>
+
+                     <div *ngIf="o.isOrderActive" style="width: 100%; margin-top: 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.253);"></div>
+
+                  </div>
+
+
+
+                  <div *ngIf="o.isOrderActive"
+                     style="display: flex; justify-content: space-between; padding: 5px 10px 10px 10px;">
+                     <div><span style="font-size: 1rem; font-weight: 600;">{{o.totalItem}}</span> Pcs</div>
+                     <div><span style="font-size: 1.2rem; font-weight: 600;">
+
+                           <span style="font-size: .7rem; font-weight: 400; vertical-align: top;">Rp.</span>
+                           {{o.totalOrderPrice}}</span></div>
+                  </div>
+
+
+               </div>
+
+            </div>
+
+
+            <div *ngIf="o.isOrderActive" class="detail">
+
+
+
+               <app-icon-button icon="delete_forever" color="red" [hidden]="!o.isOrderActive"
+                  (click)="openModal(o.orderCode)"></app-icon-button>
+
+
+               <app-icon-button  icon="edit" [routerLink]="['/edit-order/', o.orderCode]"></app-icon-button>
+
+
+               <app-icon-button icon="visibility" [routerLink]="['/customer-detail', o.customerCode]"
+                  [hidden]="!o.isActive"></app-icon-button>
+
+
+            </div>
+
+
+
+         </div>
+
+
+      </div>
+
+
+   </div>
+
+   <div style="display: flex; justify-content: space-between; gap: 7px; margin-top: 20px;">
+
+
+
+
+      <app-select label="" [options]="sizeList" (selectedOption)="changeSize($event)" />
+      <app-pagination [totalPages]="totalPages" [currentPage]="page" (pageChange)="onPageChange($event)" />
+
+
+
+
+
+   </div>
+
+</div>

@@ -1,0 +1,133 @@
+<nav>
+   <div class="nav_con">
+      <div style="font-weight: 600;">MOONAPP</div>
+      <div>
+         <ul class="nav_menu">
+            <li class="active" [routerLink]="['/customer-list']">customer</li>
+            <li [routerLink]="['/items']">items</li>
+            <li [routerLink]="['/orders']">order</li>
+         </ul>
+      </div>
+   </div>
+</nav>
+
+<app-confirm 
+message="Yakin ingin menghapus?"
+   data="customer.customerName"
+   [showModal]="showModal"
+   [customerToDelete]="customerToDelete"
+   (close)="closeModal()"
+   (confirm)="confirmDelete($event)">
+</app-confirm>
+
+
+<app-confirm 
+message="Yakin ingin  re-store?"
+   data="customer.customerName" 
+   [showModal]="showModal2" 
+   [customerToDelete]="customerToDelete2" 
+   (close)="closeModal2()"
+   (confirm)="confirmDelete2($event)">
+</app-confirm>
+
+<div class="con">
+   <h2 class="hero_title">DAFTAR CUSTOMER</h2>
+
+   <div style="display: flex; justify-content: space-between; gap: 5px;">
+      <div style="display: flex; gap: 5px;">
+         <app-search 
+            [(searchQuery)]="searchQuery" 
+            (searchQueryChange)="onSearchChange2()" />
+         
+         <app-select 
+            label="Sort" 
+            [options]="sortList" 
+            (selectedOption)="onOptionSelected($event)" />
+         
+         <app-select 
+            label="Filter" 
+            [options]="filterIsActiveList" 
+            (selectedOption)="onFilterIsActiveSelected($event)" />
+      </div>
+
+      <app-button 
+         text="Add" 
+         icon="person_add" 
+         [routerLink]="['/add-customer']"></app-button>
+   </div>
+
+   <br>
+
+   <div class="item-con">
+      <div class="item" *ngFor="let customer of customers">
+         
+         <div>
+            <div class="pic">
+               <img [src]="customer.picUrl ? customer.picUrl : 'detault.jpg'" 
+                    alt="{{ customer.customerName }}" />
+            </div>
+         </div>
+         
+         
+         
+
+         <div class="text">
+            <div>
+               <div class="code">{{ customer.customerCode }} </div>
+               <div style="display: flex; align-items: center;">
+                  <span class="name">{{ customer.customerName }}</span>
+                  
+
+
+                  <span class="status" 
+                        [ngClass]="customer.isActive ? 'active-status' : 'inactive-status'">
+                     <span class="material-symbols-rounded">
+                        {{ customer.isActive ? 'verified' : 'cancel' }}
+                     </span>
+                  </span>
+               </div>
+
+            </div>
+
+            <div class="detail">
+
+
+               <app-icon-button 
+                  icon="undo" 
+                  color="green" 
+                  [hidden]="customer.isActive"
+                  (click)="openModal2(customer.customerCode)"></app-icon-button>
+
+
+               <app-icon-button 
+                  icon="delete_forever" 
+                  color="red" 
+                  [hidden]="!customer.isActive"
+                  (click)="openModal(customer.customerCode)"></app-icon-button>
+
+               <app-icon-button 
+                  icon="edit" 
+                  [hidden]="!customer.isActive"
+                  [routerLink]="['/edit-customer', customer.customerCode]"></app-icon-button>
+
+               <app-icon-button 
+                  icon="visibility" 
+                  [routerLink]="['/customer-detail', customer.customerCode]" 
+                  [hidden]="!customer.isActive"></app-icon-button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div style="display: flex; justify-content: space-between; gap: 7px; margin-top: 20px;">
+      <app-select 
+         label="" 
+         [options]="sizeList" 
+         (selectedOption)="changeSize($event)" />
+      
+      <app-pagination 
+         [totalPages]="totalPages" 
+         [currentPage]="page" 
+         (pageChange)="onPageChange($event)" />
+   </div>
+</div>

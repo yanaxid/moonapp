@@ -1,0 +1,213 @@
+<nav>
+   <div class="nav_con">
+      <div style="font-weight: 600;">MOONAPP</div>
+      <div>
+         <ul class="nav_menu">
+            <li [routerLink]="['/customer-list']">customer</li>
+            <li [routerLink]="['/items']">items</li>
+            <li class="active" [routerLink]="['/orders']">order</li>
+         </ul>
+      </div>
+   </div>
+</nav>
+
+<div id="confirmModal" class="modal" [ngClass]="{'show': showModal}" (click)="closeModal()">
+   <div class="modal-content" (click)="$event.stopPropagation()">
+      <span class="close" (click)="closeModal()">&times;</span>
+
+      <div style="padding: 0; background-color: #fff;">
+         <app-search [(searchQuery)]="searchQuery" (searchQueryChange)="onSearchChange2()" />
+      </div>
+
+      <div style="max-height: 150px; overflow: auto;">
+         <div style="margin-top: 10px;" *ngIf="customers.length > 0">
+            <ul style="margin: 0px; padding: 0 20px 0 0">
+               <li *ngFor="let c of customers"
+                  style="list-style: none; width: fit-content; margin: 0px; margin-bottom: 5px; padding: 5px; background-color: rgb(241, 241, 241); border-radius: 6px;">
+                  <a style="cursor: pointer; display: flex; gap: 10px; align-items: center;"
+                     (click)="onCustomerClick(c)">
+                     <div class="pic_small">
+                        <img [src]="c.picUrl ? c.picUrl : 'detault.jpg'" alt="{{ c.customerName }}" />
+                     </div>
+                     <div>
+                        {{ c.customerName }}
+                        <span class="status" [ngClass]="c.isActive ? 'active-status' : 'inactive-status'">
+                           <span class="material-symbols-rounded">
+                              {{ c.isActive ? 'verified' : 'cancel' }}
+                           </span>
+                        </span>
+                     </div>
+                  </a>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div id="confirmModal" class="modal" [ngClass]="{'show': showModal2}" (click)="closeModal2()">
+   <div class="modal-content" (click)="$event.stopPropagation()">
+      <span class="close" (click)="closeModal2()">&times;</span>
+
+      <div style="padding: 0; background-color: #fff;">
+         <app-search [(searchQuery)]="searchItemQuery" (searchQueryChange)="onSearchChangeItem2()" />
+      </div>
+
+      <div style="max-height: 150px; overflow: auto;">
+         <div style="margin-top: 10px;" *ngIf="items.length > 0">
+            <ul style="margin: 0px; padding: 5px;">
+
+
+
+
+               <li *ngFor="let i of items"
+                  [ngStyle]="i.terpilih ? {'box-shadow': '0px 0px 0px 2px rgba(255, 0, 0, 0.5)'} : {}"
+                  style="list-style: none; width: fit-content; margin: 0px; margin-bottom: 5px; padding: 5px; background-color: rgb(241, 241, 241); border-radius: 6px;">
+
+                  <a style="cursor: pointer; display: flex; gap: 10px; align-items: center; position: relative;"
+                     (click)="onItemClick(i)">
+
+                     <!-- <h2>YANA</h2> -->
+
+                     <div class="pic_small">
+                        <img [src]="i.picUrl ? i.picUrl : 'detault.jpg'" alt="{{ i.itemName }}" />
+                     </div>
+
+                     <div>
+                        {{ i.itemName }}
+
+
+
+                        <span class="status" [ngClass]="i.isActive ? 'active-status' : 'inactive-status'">
+                           <span class="material-symbols-rounded">
+                              {{ i.isActive ? 'verified' : 'cancel' }}
+                           </span>
+                        </span>
+                     </div>
+
+                     <div>{{i.stock}}</div>
+                  </a>
+               </li>
+
+
+
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="con">
+   <h2 class="hero_title">EDIT ORDER</h2>
+
+   <div class="paper">
+      <form (ngSubmit)="onSubmit()" #customerForm="ngForm">
+         <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="padding-bottom: 50px;">
+               <div style="display: flex; gap: 4px;">
+                  <div class="button" (click)="openModal()">
+                     <span class="material-symbols-rounded">search</span>
+                     Customer
+                  </div>
+                  <div class="button" style="cursor:not-allowed;">
+                     <span class="material-symbols-rounded">search</span>
+                     Item
+                  </div>
+               </div>
+
+               <div *ngIf="selectedCustomer" style="margin-top: 20px; display: flex; gap: 10px">
+                  <div class="pic">
+                     <img [src]="selectedCustomer.picUrl ? selectedCustomer.picUrl : 'detault.jpg'"
+                        alt="{{ selectedCustomer.customerName }}" />
+                  </div>
+                  <div>
+                     <div style="font-weight: 500;">
+                        {{ selectedCustomer.customerName }}
+                        <span class="status"
+                           [ngClass]="selectedCustomer.isActive ? 'active-status' : 'inactive-status'">
+                           <span class="material-symbols-rounded">
+                              {{ selectedCustomer.isActive ? 'verified' : 'cancel' }}
+                           </span>
+                        </span>
+                     </div>
+                     <div style="font-size: .8rem;"> {{ selectedCustomer.customerCode }}</div>
+                  </div>
+               </div>
+
+               <div *ngIf="selectedItems.length > 0" >
+
+
+                  <!-- <div *ngFor="let item of selectedItems" style="margin-top: 20px; display: flex; gap: 10px"> -->
+                     <div *ngFor="let item of selectedItems" style="margin-top: 20px;">
+
+
+                        <div *ngIf="item.isActive" style="display: flex; gap: 10px">
+
+                           
+                           <div class="pic">
+                              <img [src]="item.picUrl ? item.picUrl : 'detault.jpg'" alt="{{ item.picUrl }}" />
+                           </div>
+      
+      
+      
+                           <div>
+                              <div style="font-weight: 500;">
+                                 {{ item.itemName }}
+                                 <span class="status" [ngClass]="item.isActive ? 'active-status' : 'inactive-status'">
+                                    <span class="material-symbols-rounded">
+                                       {{ item.isActive ? 'verified' : 'cancel' }}
+                                    </span>
+                                 </span>
+                              </div>
+                              <div style="font-size: .8rem;"> {{ item.itemCode }}</div>
+                           </div>
+      
+      
+      
+                           <input type="number" class="input_qty" [(ngModel)]="item.quantity"
+                              (ngModelChange)="calculateTotal(item)" min="1" name="quantity-{{item.itemId}}" />
+                           
+                           
+                              <div><span style="font-size: .7rem; font-weight: 400; vertical-align: top;">Rp.</span> {{ item.totalPrice | number: '1.2-2' }}</div>
+      
+      
+                           <div (click)="removeItemFromSelectedItems(item)" style="background-color: rgba(206, 227, 255, 0.425); height: 27px; width: 27px; border-radius: 7px; display: flex; justify-content: center; align-items: center; cursor: pointer;">
+                              <span class="material-symbols-rounded">
+                                 close
+                                 </span>
+                           </div>
+
+                        </div>
+                     
+                     
+                     
+                  </div>
+                  
+                  
+                  
+                  <div style="font-weight: bold; font-size: 1.2rem;  position: absolute; bottom: 6px; left: 6px; ">
+                     <span style="font-size: .7rem; font-weight: 400; vertical-align: top;">Rp.</span>{{ calculateTotalPrice() | number: '1.2-2' }}
+                  </div>
+
+
+
+                  
+               </div>
+            </div>
+         </div>
+
+         <!-- <button class="submit_btn">Save</button> -->
+
+
+         <button class="submit_btn" 
+               [hidden]="uploadData.items.length == 0 || !uploadData.customerCode" >
+            Save
+         </button>
+
+
+
+
+
+      </form>
+   </div>
+</div>

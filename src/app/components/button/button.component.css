@@ -1,0 +1,77 @@
+.button {
+   border: none;
+   color: #fff;
+   font-weight: 400;
+   height: 27px;
+   padding: 0 10px;
+   border-radius: 5px;
+   font-size: .9rem;
+   outline: none;
+   transition: .2s;
+   width: fit-content;
+   cursor: pointer;
+   padding-left: 30px;
+   font-family: "Poppins", sans-serif;
+   font-weight: 400;
+   font-style: normal;
+}
+
+/* Style untuk tipe success */
+.blue .button {
+   background-color: rgb(33, 85, 255);
+}
+
+.blue .button:focus {
+   box-shadow: 0px 0px 0px 4px rgba(108, 135, 255, 0.226);  /* Warna shadow biru */
+}
+
+.blue .button:hover {
+   background-color: rgb(15, 57, 196);
+}
+
+/* Style untuk tipe danger */
+.red .button {
+   background-color: rgb(244, 67, 54);
+}
+
+.red .button:focus {
+   box-shadow: 0px 0px 0px 4px rgba(244, 67, 54, 0.226);  /* Warna shadow merah */
+}
+
+.red .button:hover {
+   background-color: rgb(211, 47, 47);
+}
+
+
+
+/* Style untuk tipe danger */
+.gray .button {
+   background-color: rgb(190, 190, 190);
+}
+
+.gray .button:focus {
+   box-shadow: 0px 0px 0px 4px rgba(66, 66, 66, 0.226);  /* Warna shadow merah */
+}
+
+.gray .button:hover {
+   background-color: rgb(170, 170, 170);
+}
+
+.icon {
+   position: absolute;
+   color: rgb(253, 253, 253);
+   font-size: 1.2rem;
+   top: 0.29rem;
+   left: 0.4rem;
+   pointer-events: none; 
+}
+
+.button_con {
+   position: relative;
+}
+
+/* Jika tidak ada ikon, atur ulang padding */
+.no-icon .button {
+   padding-right: 15px;
+   padding: 0 10px;
+}

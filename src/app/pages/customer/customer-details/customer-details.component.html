@@ -1,0 +1,94 @@
+<nav>
+   <div class="nav_con">
+      <div style="font-weight: 600;">MOONAPP</div>
+      <div>
+         <ul class="nav_menu">
+            <li class="active" [routerLink]="['/customer-list']">customer</li>
+            <li  [routerLink]="['/items']">items</li>
+            <li   [routerLink]="['/orders']">order</li>
+         </ul>
+      </div>
+   </div>
+</nav>
+
+
+<app-confirm 
+message="Yakin ingin menghapus?"
+   data="customer.customerName"
+   [showModal]="showModal"
+   [customerToDelete]="customerToDelete"
+   (close)="closeModal()"
+   (confirm)="confirmDelete($event)">
+</app-confirm>
+
+
+<div class="con">
+
+
+
+   <h2 class="hero_title">CUSTOMER DETAIL</h2>
+
+
+
+   <div class="paper">
+
+
+     
+
+      <div class="pic" style="width: 20%;">
+         <img [src]="customer?.pic?.picUrl ? customer?.pic?.picUrl : 'detault.jpg'" alt="{{ customer.customerName }}"
+             />
+      </div>
+
+
+
+
+      <div style="position: relative; width: 80%;">
+
+         <div style="display: flex; align-items: center;">
+            <span class="name">{{ customer.customerName }}
+            </span>
+
+            <span class="status" [ngClass]="customer.isActive ? 'active-status' : 'inactive-status'">
+               <span class="material-symbols-rounded">
+                  {{ customer.isActive ? 'verified' : 'cancel' }}
+               </span>
+
+            </span>
+
+         </div>
+
+
+
+
+
+         <br>
+
+         <div>
+            <p><strong>Code:</strong> {{ customer?.customerCode }}</p>
+            <p><strong>Address:</strong> {{ customer?.customerAddress }}</p>
+            <p><strong>Phone:</strong> {{ customer?.customerPhone }}</p>
+            <p><strong>Last Order Date:</strong> {{ customer?.lastOrderDate ? (customer.lastOrderDate | date) : 'No ordersyet' }}</p>
+            <!-- <li><strong>Created Date:</strong> {{ customer?.createdDate }}</li>
+            <li><strong>Modified Date:</strong> {{ customer?.modifiedDate }}</li> -->
+
+         </div>
+
+
+         <div class="detail">
+            <app-icon-button icon="delete_forever" color="red" [hidden]="!customer.isActive" (click)="openModal(customer.customerCode)"></app-icon-button>
+            
+
+            <app-icon-button 
+                  icon="edit" 
+                  [hidden]="!customer.isActive"
+                  [routerLink]="['/edit-customer', customer.customerCode]"></app-icon-button>
+
+         </div>
+
+
+       
+      </div>
+   </div>
+
+</div>

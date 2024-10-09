@@ -1,0 +1,157 @@
+.active-status {
+   color: green; /* Warna untuk status aktif */
+}
+
+.inactive-status {
+   color: red; /* Warna untuk status tidak aktif */
+}
+
+.material-symbols-rounded {
+   font-size: 1.2rem;
+}
+
+
+
+
+/* BASE */
+.con {
+   /* border: 1px solid red; */
+   margin: 0 auto;
+   width: 35%;
+   padding: 50px 0;
+}
+.hero_title{
+   margin: 40px 0;
+}
+
+
+
+
+
+
+.item {
+   /* border: 1px solid red; */
+   background-color: #fff;
+   margin-bottom: 5px;
+   border-radius: 9px;
+   font-size: .8rem;
+
+   display: flex;
+   padding: 5px;
+   gap: 20px;
+}
+
+.pic {
+   border-radius: 5px;
+   overflow: hidden;
+   width: 50px;
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-size: cover;
+}
+
+.pic img {
+   width: 100%;   /* Gambar mengisi lebar penuh dari .pic */
+   height: 100%;  /* Gambar mengisi tinggi penuh dari .pic */
+   object-fit: cover; /* Memastikan gambar memenuhi ruang tanpa mengubah rasio aspek */
+}
+
+.text{
+   /* border: 1px solid red; */
+   width: 100%;
+   position: relative;
+
+}
+
+.name{
+   font-size: 1.2rem;
+   font-weight: 500;
+   margin-bottom: 5px;
+}
+
+.detail {
+   font-size: .9rem;
+   display: flex;
+   gap: 5px;
+   position: absolute;
+   top: 0;
+   right: 0;
+}
+
+.code {
+   font-size: .7rem;
+   color: #747474;
+   
+}
+.status {
+   border-radius: 10px;
+   padding: 0 5px;
+   font-size: .6rem;
+}
+
+
+
+
+
+.control {
+   display: flex;
+   justify-content: space-between;
+}
+
+
+
+
+/* NAV */
+
+
+
+nav {
+   background-color: #fff;
+   height: 30px;
+   width: 100%;
+   border-radius: 5px;
+   position: fixed;
+   top: 0;
+   z-index: 1;
+}
+
+.nav_con {
+   width: 40%;
+   margin: 0 auto;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.nav_menu {
+   list-style: none; /* Menghilangkan bullet pada ul */
+   display: flex; /* Menampilkan menu secara horizontal */
+   padding: 0; /* Menghilangkan padding default ul */
+   margin: 0; /* Menghilangkan margin default ul */
+}
+
+.nav_menu li {
+   margin-left: 20px; /* Memberikan jarak antar item menu */
+   cursor: pointer; /* Menambahkan pointer ketika dihover */
+   font-size: .9rem;
+}
+
+.nav_menu li.active {
+   color: red;
+   height: 100%;
+}
+
+.nav_menu li:hover {
+   color: #034fa1; /* Warna berubah ketika dihover */
+}
+
+
+.item_detail {
+   /* border: 1px solid pink; */
+   display: flex;
+   gap: 10px;
+   margin-top: 10px;
+   align-items: center;
+}

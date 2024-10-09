@@ -1,0 +1,8 @@
+<div class="button_con" [ngClass]="{'no-icon': !icon, 'blue': buttonType === 'blue', 'red': buttonType === 'red', 'gray': buttonType === 'gray'}">
+   <button class="button">
+     {{ text }}
+   </button>
+ 
+   <!-- Tampilkan ikon jika tersedia -->
+   <span *ngIf="icon" class="material-symbols-rounded icon">{{ icon }}</span>
+ </div>

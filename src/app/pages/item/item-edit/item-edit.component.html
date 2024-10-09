@@ -1,0 +1,185 @@
+<nav>
+   <div class="nav_con">
+      <div style="font-weight: 600;">MOONAPP</div>
+      <div>
+         <ul class="nav_menu">
+            <li class="active" [routerLink]="['/customer-list']">customer</li>
+            <li  [routerLink]="['/items']">items</li>
+            <li   [routerLink]="['/orders']">order</li>
+         </ul>
+      </div>
+   </div>
+</nav>
+
+
+
+<div class="con">
+
+
+   <h2 class="hero_title">EDIT CUSTOMER</h2>
+
+
+
+   <div class="paper">
+
+      <form (ngSubmit)="onSubmit(itemForm)" #itemForm="ngForm">
+
+         <div style="display: flex; flex-direction: column; gap: 20px;">
+
+
+
+            <div>
+
+               <!-- PIC -->
+
+
+
+
+               <div class="in" style="display: flex; flex-direction: column; gap: 10px;">
+
+                  <div class="pic_add" *ngIf="item.picUrl">
+                     <img [src]="item.picUrl" alt="Uploaded Image" />
+                  </div>
+
+
+                  <div>
+
+
+
+                     <input type="file" id="pic" name="pic" (change)="onFileSelected($event)" required
+                        style="display: none;" />
+
+
+                     <label for="pic" class="btn_upload_con">
+                        <span class="btn_upload">Upload</span>
+
+                        <span class="material-symbols-rounded icon">
+                           add_photo_alternate
+                        </span>
+                     </label>
+
+                  </div>
+
+
+               </div>
+
+
+
+               <!-- Menampilkan pesan error -->
+               <div class="err" *ngIf="errorMessage" class="error-message">
+                  {{ errorMessage }}
+               </div>
+
+
+            </div>
+
+            <div>
+
+
+               <!-- ITEM NAME -->
+            <div class="in">
+               <label for="customerName">Nama :</label>
+               <input 
+                  class="input" 
+                  type="text" 
+                  id="customerName" 
+                  name="customerName" 
+                  [(ngModel)]="item.itemName"
+                  #name="ngModel" 
+                  required 
+                  minlength="2" 
+                  pattern="^[a-zA-Z0-9][a-zA-Z0-9\s]*$"
+                  [ngClass]="{
+                     'error-border': 
+                     (name.invalid && (name.touched)) || 
+                     (item.itemName.length > 10 && name.touched)
+                  }" 
+               />
+
+               <!-- Validasi Nama -->
+               <div class="err" *ngIf="name.errors?.['minlength'] && name.touched" style="color: red;">
+                  Nama minimal harus terdiri dari 2 huruf.
+               </div>
+               <div class="err" *ngIf="item.itemName.length > 10 && name.touched" style="color: red;">
+                  Nama tidak boleh lebih dari 10 huruf.
+               </div>
+               <div class="err" *ngIf="name.errors?.['pattern'] && name.touched" style="color: red;">
+                  Nama tidak boleh diawali dengan karakter khusus atau spasi.
+               </div>
+               <div class="err" *ngIf="name.errors?.['required'] && name.touched" style="color: red;">
+                  Nama harus diisi.
+               </div>
+            </div>
+
+            <!-- ITEM PRICE -->
+            <div class="in">
+               <label for="itemPrice">Price :</label>
+               <input 
+                  class="input" 
+                  type="number" 
+                  id="itemPrice" 
+                  name="itemPrice"
+                  [(ngModel)]="item.price" 
+                  #price="ngModel" 
+                  required
+                  min="1" 
+                  [ngClass]="{'error-border': price.invalid && price.touched}" 
+               />
+
+               <!-- Validasi Price -->
+               <div class="err" *ngIf="price.errors?.['required'] && price.touched" style="color: red;">
+                  Price harus diisi.
+               </div>
+               <div class="err" *ngIf="price.errors?.['min'] && price.touched" style="color: red;">
+                  Price tidak boleh kurang dari 1.
+               </div>
+            </div>
+
+
+           <!-- ITEM STOCK -->
+            <div class="in">
+               <label for="itemStock">Stok :</label>
+               <input 
+                  class="input" 
+                  type="number" 
+                  id="itemStock" 
+                  name="itemStock" 
+                  [(ngModel)]="item.stock"
+                  #stock="ngModel" 
+                  required 
+                  min="1" 
+     
+                  [ngClass]="{'error-border': stock.invalid && stock.touched}" 
+               />
+
+               <!-- Validasi Stok -->
+               <div class="err" *ngIf="stock.errors?.['required'] && stock.touched" style="color: red;">
+                  Stok harus diisi.
+               </div>
+               <div class="err" *ngIf="stock.errors?.['min'] && stock.touched" style="color: red;">
+                  Stok tidak boleh kurang dari 1.
+               </div>
+
+            </div>
+
+
+
+
+            </div>
+         </div>
+
+
+
+
+
+         <!-- Menampilkan gambar setelah diunggah -->
+
+
+
+         <button class="submit_btn" type="submit" [disabled]="itemForm.invalid">Save</button>
+
+
+      </form>
+   </div>
+
+</div>

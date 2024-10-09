@@ -1,0 +1,14 @@
+<div id="confirmModal" class="modal" [ngClass]="{'show': showModal}" (click)="closeModal()">
+   <div class="modal-content" (click)="$event.stopPropagation()">
+     <span class="close" (click)="closeModal()">&times;</span>
+ 
+     <h3 style="margin: 0;">Confirm</h3>
+     <p style="margin: 5px 0;">{{message}}</p>
+ 
+     <div class="modal-footer">
+       <app-button text="Ya" (click)="confirmDelete()" [buttonType]="'red'"></app-button>
+       <app-button text="Cancel" (click)="closeModal()" [buttonType]="'gray'"></app-button>
+     </div>
+   </div>
+ </div>
+ 

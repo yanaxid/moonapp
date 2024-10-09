@@ -1,0 +1,15 @@
+<div class="select_con">
+   
+
+
+   <select class="select" (change)="onOptionSelected($event)">
+      <option *ngIf="label" value="" selected>{{label}}</option>
+      <option *ngFor="let option of options" [value]="option.value">{{ option.name }}</option>
+   </select>
+
+   <span class="material-symbols-rounded icon">
+      keyboard_arrow_down
+   </span>
+
+
+</div>
